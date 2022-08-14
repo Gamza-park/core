@@ -1,15 +1,23 @@
 package hello.core.discount;
 
+import hello.core.AppConfig;
 import hello.core.member.Grade;
 import hello.core.member.Member;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class RateDiscountPolicyTest {
+public class DiscountPolicyTest {
 
-    RateDiscountPolicy discountPolicy = new RateDiscountPolicy();
+    DiscountPolicy discountPolicy;
+
+    @BeforeEach
+    public void beforeEach(){
+        AppConfig appConfig = new AppConfig();
+        discountPolicy = appConfig.discountPolicy();
+    }
 
     @Test
     @DisplayName("VIP IS 10% Discount")
@@ -18,10 +26,10 @@ public class RateDiscountPolicyTest {
         Member member = new Member(1L, "memverVIP", Grade.VIP);
 
         // when
-        int discount = discountPolicy.discount(member, 10000);
+        int discount = discountPolicy.discount(member, 20000);
 
         // then
-        assertThat(discount).isEqualTo(1000);
+        assertThat(discount).isEqualTo(2000);
     }
 
     @Test
