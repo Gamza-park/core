@@ -27,7 +27,7 @@ public class BeanDefinitionTest {
     }
 
     @Test
-    @DisplayName("Bean Set MetaInfo Check")
+    @DisplayName("Bean Set MetaInfo Check For XML")
     void findApplicationBeanXml(){
         String[] beanDefinitionNames = gac.getBeanDefinitionNames();
         for (String beanDefinitionName : beanDefinitionNames) {
